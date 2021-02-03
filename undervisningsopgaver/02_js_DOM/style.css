@@ -1,0 +1,25 @@
+img {
+    width: 100%;
+}
+section_1 {
+    display: grid;
+    grid-template-columns: 1fr 6fr 6fr 1fr;
+}
+article_1 {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    margin-right: 10px;
+    border: 1px solid black;
+}
+article_2 {
+    grid-column-start: 3;
+    grid-column-end: 4;
+    margin-left: 10px;
+    border: 1px solid black;
+}
+header {
+    text-align: center;
+}
+footer {
+    text-align: center;
+}

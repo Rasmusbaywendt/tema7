@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+
+<body>
+    <header>
+        Titel
+    </header>
+    <main>
+        <section_1>
+            <article_1>
+                <img id="img1" src="https://placeimg.com/400/300/arch/grayscale" alt="">
+
+                <h2>Article 1</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem consectetur dolore ipsum quasi aliquid, neque, quas, obcaecati beatae similique quisquam molestiae veritatis dolores nemo tempora necessitatibus, ex libero odit doloremque!</p>
+
+            </article_1>
+
+            <article_2>
+
+                <img id="img2" src="https://placeimg.com/400/300/tech/grayscale" alt="">
+
+                <h2>Article 2</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi non laudantium iure error beatae sequi possimus tempora, enim quibusdam sunt dolore atque ad, culpa quia cumque suscipit quidem maiores molestiae.</p>
+
+            </article_2>
+        </section_1>
+
+    </main>
+    <footer>
+        <h3>This is the footer</h3></footer>
+
+    <script>
+        const titel = document.querySelector("header");
+        console.log(titel);
+        const artikel1 = document.querySelector("article_1:nth-child(1) p");
+        const artikel2 = document.querySelector("article_2:nth-child(2) p");
+
+        titel.textContent = "Billedegalleri"
+        titel.innerHTML = "<h1>Billedegalleri</h1>";
+        const section1 = document.querySelector("section_1")
+        console.log(section1);
+
+        artikel1.innerHTML = "Her er et <b>billede</b> af noget arkitektur";
+        artikel2.innerHTML = "Her er et <b>billede</b> af noget arkitektur";
+        const pic1 = document.querySelector("article_1:nth-child(1) img");
+        console.log(pic1);
+        pic1.src = "billede4.jpg";
+        pic1.alt = "mit arkitektur billede";
+
+        const pic2 = document.querySelector("article_2:nth-child(2) img");
+        console.log(pic2);
+        pic2.src = "billede3.jpg";
+        pic2.alt = "mit arkitektur billede 2";
+
+    </script>
+</body>
+
+</html>

@@ -28,11 +28,13 @@
         let first_img = document.createElement("img");
         let first_p = document.createElement("p");
         let second_p = document.createElement("p");
+
         mainSection.appendChild(newArticle);
         first_h3.innerHTML = dyr.navn;
         first_img.innerHTML = dyr.billde;
         first_p.innerHTML = dyr.type;
         second_p.innerHTML = dyr.levested;
+
         //first_p.innerHTML = `navn:${dyr.navn} type:${dyr.type} levested:${dyr.levested}`;
         newArticle.appendChild(first_h3);
         newArticle.appendChild(first_img);

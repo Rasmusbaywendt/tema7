@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="">
+</head>
+<main>
+
+</main>
+
+<body>
+    <script>
+        const dyr = [{
+                "navn": "gris",
+                "type": "pattedyr",
+                "billede": "http://mabe-kea.dk/E19/pics/pig.png",
+                "levested": "svinefarme"
+            }, {
+                "navn": "frø",
+                "type": "springpadder",
+                "billede": "http://mabe-kea.dk/E19/pics/frog.png",
+                "levested": "sumpede områder"
+            }, {
+                "navn": "ræv",
+                "type": "pattedyr",
+                "billede": "http://mabe-kea.dk/E19/pics/fox.png",
+                "levested": "skove"
+            }, {
+                "navn": "sild",
+                "type": "fisk",
+                "billede": "http://mabe-kea.dk/E19/pics/sild.jpg",
+                "levested": "vandet"
+            }, {
+                "navn": "krokodille",
+                "type": "krybdyr",
+                "billede": "http://mabe-kea.dk/E19/pics/kroko.jpg",
+                "levested": "vandet"
+            }
+
+        ];
+
+
+
+
+        start()
+
+        function start() {
+            let mainSection = document.querySelector("main");
+            let first_liste = document.createElement("ul");
+            dyr.forEach(dyret => {
+                first_liste.innerHTML += `<li> navn:${dyret.navn} type:${dyret.type} levested:${dyret.levested} </li>`
+            })
+            mainSection.appendChild(first_liste);
+        };
+
+    </script>
+</body>
+
+</html>

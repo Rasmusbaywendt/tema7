@@ -32,13 +32,13 @@
         <button data-troende="alle" class="valgt">Alle
 
         </button>
-        <button data-troende="ja" class="valgt">Troende
+        <button data-troende="ja" class="">Troende
 
         </button>
-        <button data-troende="nej" class="valgt">Ikke troende
+        <button data-troende="nej" class="">Ikke troende
 
         </button>
-        <button data-troende="tvivler" class="valgt">Tvivler
+        <button data-troende="tvivler" class="">Tvivler
 
         </button>
 
@@ -67,30 +67,50 @@
             }
 
         };
-        async function hentData() {
-            const respons = await fetch(url, options);
-            const json = await respons.json();
-            vis(json);
+        document.addEventListener("DOMContentLoaded", start);
+        let personer;
+        let filter = "alle";
+
+        function start() {
+            const filterKnapper = document.querySelectorAll("nav button");
+            filterKnapper.forEach(knap => knap.addEventListener("click", filtrerPersoner));
+            loadJSON();
         }
+
+        function filtrerPersoner() {
+            filter = this.dataset.troende;
+            visPersoner();
+        }
+
+        async function loadJSON() {
+            const JSONData = await fetch(url, options);
+            personer = await JSONData.json();
+            console.log("Personer", personer);
+            visPersoner();
+        }
+
+
+
         const main = document.querySelector("main");
         const template = document.querySelector("template").content;
-        let filter = "ja";
 
-        function vis(json) {
-            console.log(json)
-            json.forEach(person => {
-                if (filter == person.troende) {
+
+        function visPersoner() {
+            const dest = document.querySelector("main");
+            const skabelon = document.querySelector("template").content;
+            dest.textContent = "";
+            personer.forEach(person => {
+                if (filter == person.troende || filter == "alle") {
                     const klon = template.cloneNode(true);
                     klon.querySelector(".billede").src = medieurl + person.billede;
                     klon.querySelector(".navn").textContent = person.fornavn;
                     klon.querySelector(".efternavn").textContent = person.efternavn;
                     klon.querySelector(".fødselsdag").textContent = person.fødselsdag;
-                    main.appendChild(klon);
+                    dest.appendChild(klon);
                 }
             })
 
         }
-        hentData();
 
     </script>
 </body>

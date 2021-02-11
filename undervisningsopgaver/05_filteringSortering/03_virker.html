@@ -45,7 +45,8 @@
 
     </nav>
 
-    <main></main>
+    <main>
+    </main>
 
     <template>
         <article>
@@ -80,6 +81,7 @@
         function filtrerPersoner() {
             filter = this.dataset.troende;
             visPersoner();
+
         }
 
         async function loadJSON() {
@@ -92,7 +94,6 @@
 
 
         const main = document.querySelector("main");
-        const template = document.querySelector("template").content;
 
 
         function visPersoner() {

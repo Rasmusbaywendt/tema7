@@ -51,7 +51,7 @@
     </main>
 
     <template>
-        <article>
+        <article class="person">
             <img src="" alt="" class="billede">
             <h2 class="navn"></h2>
             <p class="efternavn"></p>
@@ -112,7 +112,7 @@
                     klon.querySelector(".efternavn").textContent = person.efternavn;
                     klon.querySelector(".fødselsdag").textContent = person.fødselsdag;
 
-                    //klon.querySelector(".person").addEventListener("click", () => visDetaljer(person));
+                    klon.querySelector(".person").addEventListener("click", () => visDetaljer(person));
 
                     dest.appendChild(klon);
                 }
@@ -120,9 +120,9 @@
 
         }
 
-        //function visDetaljer(hvem) {
-        //location.href = `02_detalje.html?id=${hvem._id}`;
-        //}
+        function visDetaljer(hvem) {
+            location.href = `02_detalje.html?id=${hvem._id}`;
+        }
 
     </script>
 </body>

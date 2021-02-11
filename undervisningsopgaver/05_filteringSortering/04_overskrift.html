@@ -20,8 +20,8 @@
             background-color: honeydew;
         }
 
-        button:focus {
-            background-color: orangered;
+        .valgt {
+            background-color: red;
         }
 
     </style>
@@ -83,6 +83,8 @@
 
         function filtrerPersoner() {
             filter = this.dataset.troende;
+            document.querySelector(".valgt").classList.remove("valgt");
+            this.classList.add("valgt")
             visPersoner();
             header.textContent = this.textContent;
         }

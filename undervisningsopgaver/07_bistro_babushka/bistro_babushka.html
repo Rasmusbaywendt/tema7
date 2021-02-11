@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        nav {
+            display: flex;
+            justify-content: center;
+        }
+
+        button {
+            background-color: orange;
+            text-decoration: none;
+            font-family: Century Gothic;
+            font-size: 30px;
+            margin: 5px;
+            border-radius: 10px;
+        }
+
+        button:hover {
+            background-color: honeydew;
+        }
+
+        .valgt {
+            background-color: red;
+        }
+
+        .first_section {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            padding-top: 5%;
+        }
+
+        .article_container {
+            grid-auto-columns: 1fr;
+            margin: 2%;
+            border: 2px solid black;
+        }
+
+        .article_container:hover {
+            opacity: 65%;
+        }
+
+        main {
+            margin: auto;
+            width: 970px;
+        }
+
+        .billede {
+            width: 100%;
+        }
+
+        body {
+            background-color: whitesmoke;
+        }
+
+        p {
+            font-family: Century Gothic;
+            text-align: center
+        }
+
+        h2 {
+            text-align: center;
+            font-family: Lucida Console;
+        }
+
+        h1 {
+            text-align: center;
+            font-family: Lucida Console;
+        }
+
+        header {}
+
+        .header_img {
+            width: 100%;
+            height: 50%;
+        }
+
+    </style>
+</head>
+
+<body>
+    <header><img class="header_img" src="moscow2.png" alt="billed1"></header>
+
+    <nav>
+        <button data-kategori="alle" class="valgt">Alle
+
+        </button>
+        <button data-kategori="forretter" class="">Forretter
+
+        </button>
+        <button data-kategori="hovedretter" class="">Hovedretter
+
+        </button>
+        <button data-kategori="sideorders" class="">Sideorders
+
+        </button>
+
+        <button data-kategori="desserter" class="">Desserter
+
+        </button>
+
+        <button data-kategori="drikkevarer" class="">Drikkevarer
+
+        </button>
+
+
+    </nav>
+
+    <main>
+        <h1>Alle retter</h1>
+        <section class="first_section"></section>
+    </main>
+
+    <template class="">
+        <div class="article_container">
+            <img src="" alt="" class="billede">
+            <h2 class="navn"></h2>
+            <p class="pris"></p>
+            <p class="kort"></p>
+            <p class="oprindelse"></p>
+        </div>
+    </template>
+
+    <script>
+        const url = "https://babushka-dd8a.restdb.io/rest/menu";
+
+        const medieurl = "https://babushka-dd8a.restdb.io/media/";
+
+        const options = {
+            headers: {
+                'x-apikey': "600ec2fb1346a1524ff12de4"
+            }
+
+        };
+        document.addEventListener("DOMContentLoaded", start);
+        let mad;
+        let filter = "alle";
+        const header = document.querySelector("h1");
+
+        function start() {
+            const filterKnapper = document.querySelectorAll("nav button");
+            filterKnapper.forEach(knap => knap.addEventListener("click", filtrerMad));
+            loadJSON();
+        }
+
+        function filtrerMad() {
+            filter = this.dataset.kategori;
+            document.querySelector(".valgt").classList.remove("valgt");
+            this.classList.add("valgt")
+            visMad();
+            header.textContent = this.textContent;
+        }
+
+        async function loadJSON() {
+            const JSONData = await fetch(url, options);
+            mad = await JSONData.json();
+            console.log("mad", mad);
+            visMad();
+        }
+
+
+
+        const main = document.querySelector("main");
+
+        function visMad() {
+            const dest = document.querySelector("section");
+            const skabelon = document.querySelector("template").content;
+            dest.textContent = "";
+            mad.forEach(maden => {
+                if (filter == maden.kategori || filter == "alle") {
+                    const klon = skabelon.cloneNode(true);
+                    klon.querySelector(".billede").src = medieurl + maden.billede;
+                    klon.querySelector(".navn").textContent = maden.navn;
+                    klon.querySelector(".pris").textContent = maden.pris + " kr";
+                    klon.querySelector(".kort").textContent = maden.kortbeskrivelse;
+                    klon.querySelector(".oprindelse").textContent = "Oprindelsesland: " +
+                        maden.oprindelsesregion;
+
+                    klon.querySelector(".article_container").addEventListener("click", () => visDetaljer(maden));
+
+                    dest.appendChild(klon);
+                }
+            })
+            main.appendChild(dest);
+        }
+
+        function visDetaljer(hvem) {
+            location.href = `madprodukt.html?id=${hvem._id}`;
+        }
+
+    </script>
+</body>
+
+</html>
